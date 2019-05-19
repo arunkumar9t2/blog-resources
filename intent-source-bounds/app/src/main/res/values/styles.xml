@@ -11,10 +11,9 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="AppTheme.Launcher" parent="AppTheme.NoActionBar">
+    <style name="AppTheme.NoWindowBackground" parent="AppTheme.NoActionBar">
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowIsTranslucent">true</item>
-        <item name="android:colorBackgroundCacheHint">@null</item>
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
