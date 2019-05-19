@@ -12,6 +12,18 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
+            android:name=".HeroTransformActivity"
+            android:icon="@mipmap/ic_hero_transform"
+            android:label="@string/title_activity_hero_transform"
+            android:roundIcon="@mipmap/ic_hero_transform_round"
+            android:theme="@style/AppTheme.NoWindowBackground">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".MaterialTransformActivity"
             android:icon="@mipmap/ic_material_transform"
             android:label="@string/title_activity_material_transform"

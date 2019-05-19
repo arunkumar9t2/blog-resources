@@ -92,4 +92,5 @@
     </string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_material_transform">Material Transform</string>
+    <string name="title_activity_hero_transform">Hero Transform</string>
 </resources>
