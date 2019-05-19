@@ -1,4 +1,4 @@
-package dev.arunkumar.android.util
+package dev.arunkumar.intentsourcebounds.util
 
 import android.animation.Animator
 import android.graphics.Rect

@@ -1,4 +1,4 @@
-package dev.arunkumar.android
+package dev.arunkumar.intentsourcebounds
 
 import `in`.arunkumarsampath.transitionx.prepareTransition
 import android.os.Bundle
@@ -8,10 +8,10 @@ import androidx.core.view.doOnNextLayout
 import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
 import androidx.core.view.updateLayoutParams
-import dev.arunkumar.android.util.hasSourceBounds
-import dev.arunkumar.android.util.preAnimationSetup
-import dev.arunkumar.android.util.screenBounds
-import dev.arunkumar.android.util.sourceBounds
+import dev.arunkumar.intentsourcebounds.util.hasSourceBounds
+import dev.arunkumar.intentsourcebounds.util.preAnimationSetup
+import dev.arunkumar.intentsourcebounds.util.screenBounds
+import dev.arunkumar.intentsourcebounds.util.sourceBounds
 import kotlinx.android.synthetic.main.activity_material_transform.*
 
 class MaterialTransformActivity : AppCompatActivity() {

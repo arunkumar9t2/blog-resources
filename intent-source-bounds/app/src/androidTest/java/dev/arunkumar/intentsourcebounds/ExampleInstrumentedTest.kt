@@ -1,4 +1,4 @@
-package dev.arunkumar.android
+package dev.arunkumar.intentsourcebounds
 
 import androidx.test.InstrumentationRegistry
 import androidx.test.runner.AndroidJUnit4

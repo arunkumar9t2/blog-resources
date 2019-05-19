@@ -1,10 +1,10 @@
-package dev.arunkumar.android
+package dev.arunkumar.intentsourcebounds
 
 import android.animation.AnimatorSet
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isInvisible
-import dev.arunkumar.android.util.*
+import dev.arunkumar.intentsourcebounds.util.*
 import kotlinx.android.synthetic.main.activity_circular_reveal.*
 import kotlin.math.hypot
 
