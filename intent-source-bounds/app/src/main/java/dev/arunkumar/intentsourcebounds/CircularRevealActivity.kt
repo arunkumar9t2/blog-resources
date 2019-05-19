@@ -26,7 +26,6 @@ class CircularRevealActivity : AppCompatActivity() {
                 rootContentLayout.run {
                     screenBounds { rootLayoutBounds ->
                         // Verify if sourceBounds is valid
-                        val revealDuration = 500L
                         if (rootLayoutBounds.contains(sourceBounds)) {
                             val circle = createCircularReveal(
                                 centerX = sourceBounds.centerX() - rootLayoutBounds.left,
@@ -35,7 +34,7 @@ class CircularRevealActivity : AppCompatActivity() {
                                 endRadius = hypot(width.toFloat(), height.toFloat())
                             ).apply {
                                 isInvisible = false
-                                duration = revealDuration
+                                duration = 500L
                             }
                             AnimatorSet()
                                 .apply { playTogether(circle, statusBarAnimator, navigationBarAnimator) }
