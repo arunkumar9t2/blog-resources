@@ -13,7 +13,9 @@
         tools:ignore="GoogleAppIndexingWarning">
         <activity
             android:name=".MaterialTransformActivity"
+            android:icon="@mipmap/ic_material_transform"
             android:label="@string/title_activity_material_transform"
+            android:roundIcon="@mipmap/ic_material_transform_round"
             android:theme="@style/AppTheme.NoWindowBackground">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,7 +25,9 @@
         </activity>
         <activity
             android:name=".CircularRevealActivity"
+            android:icon="@mipmap/ic_circle_reveal"
             android:label="@string/title_activity_circular_reveal"
+            android:roundIcon="@mipmap/ic_circle_reveal_round"
             android:theme="@style/AppTheme.NoWindowBackground">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
