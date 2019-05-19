@@ -4,7 +4,6 @@ import `in`.arunkumarsampath.transitionx.prepareTransition
 import android.os.Bundle
 import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.doOnNextLayout
 import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
 import androidx.core.view.updateLayoutParams
@@ -33,7 +32,6 @@ class MaterialTransformActivity : AppCompatActivity() {
                 rootContentLayout.run {
                     screenBounds { layoutBounds ->
                         if (layoutBounds.contains(sourceBounds)) {
-                            // Save current constraints
                             // Apply source bounds dimensions to target
                             updateLayoutParams<FrameLayout.LayoutParams> {
                                 width = sourceBounds.width()
@@ -42,7 +40,6 @@ class MaterialTransformActivity : AppCompatActivity() {
                                 topMargin = sourceBounds.top
                             }
                             isVisible = true
-                            // Animate to full parent width
                             post {
                                 rootLayout.prepareTransition {
                                     auto {
@@ -57,9 +54,6 @@ class MaterialTransformActivity : AppCompatActivity() {
                                     leftMargin = 0
                                     topMargin = 0
                                 }
-                            }
-                            doOnNextLayout {
-
                             }
                         } else {
                             rootContentLayout.isInvisible = false
