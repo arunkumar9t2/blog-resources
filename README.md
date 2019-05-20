@@ -1,2 +1,2 @@
 # Blog Resources
-Resources for my [blog](arunkumar.dev/blog).
+Resources for my [blog](https://arunkumar.dev/blog).
