@@ -1,2 +1,3 @@
 rootProject.name = 'Dagger Spi Validations'
 include ':app'
+include ':dagger-validator'

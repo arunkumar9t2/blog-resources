@@ -5,6 +5,13 @@ apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 29
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
 
     defaultConfig {
         applicationId "dev.arunkumar.dagger.spi.validation"
@@ -36,6 +43,8 @@ dependencies {
     implementation "com.google.dagger:dagger-android:2.26"
     implementation "com.google.dagger:dagger-android-support:2.26"
     kapt "com.google.dagger:dagger-android-processor:2.26"
+
+    kapt project(":dagger-validator")
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
