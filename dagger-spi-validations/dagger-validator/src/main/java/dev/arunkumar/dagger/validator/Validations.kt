@@ -24,7 +24,7 @@ interface Validation {
 
     /**
      * Implementation of the method is expected to utilize `bindingGraph` and report any validation
-     * failures to `diagnosticReporter`
+     * failures/concerns to `diagnosticReporter`.
      */
     fun validate()
 }
@@ -34,9 +34,13 @@ object ValidationModule {
     @Provides
     @ElementsIntoSet
     @JvmSuppressWildcards
-    fun validations(androidContextValidation: AndroidContextValidation): Set<Validation> {
-        return setOf(androidContextValidation)
-    }
+    fun validations(
+        androidContextValidation: AndroidContextValidation,
+        primitivesValidation: PrimitivesValidation
+    ): Set<Validation> = setOf(
+        androidContextValidation,
+        primitivesValidation
+    )
 }
 
 class AndroidContextValidation
@@ -56,6 +60,29 @@ constructor(
                         "Please annotate context binding with any qualifier"
                     )
                 }
+            }
+    }
+}
+
+
+class PrimitivesValidation
+@Inject
+constructor(
+    override val bindingGraph: BindingGraph,
+    override val diagnosticReporter: DiagnosticReporter
+) : Validation {
+    override fun validate() {
+        bindingGraph.bindings()
+            .filter { binding ->
+                val key = binding.key()
+                key.type().toString() == Integer::class.java.name
+                        && !key.qualifier().isPresent
+            }.forEach { binding ->
+                diagnosticReporter.reportBinding(
+                    WARNING,
+                    binding,
+                    "Primitives should be annotated with any qualifier"
+                )
             }
     }
 }
