@@ -6,7 +6,7 @@ import dagger.model.BindingGraph
 import dagger.multibindings.ElementsIntoSet
 import dagger.spi.DiagnosticReporter
 import javax.inject.Inject
-import javax.tools.Diagnostic
+import javax.tools.Diagnostic.Kind.WARNING
 
 /**
  * Marker interface to annotate that a class performs validation.
@@ -46,10 +46,16 @@ constructor(
     override val diagnosticReporter: DiagnosticReporter
 ) : Validation {
     override fun validate() {
-        diagnosticReporter.reportBinding(
-            Diagnostic.Kind.WARNING,
-            bindingGraph.bindings().first(),
-            "Test report"
-        )
+        bindingGraph.bindings()
+            .firstOrNull { it.key().type().toString() == "android.content.Context" }
+            ?.let { contextBinding ->
+                if (!contextBinding.key().qualifier().isPresent) {
+                    diagnosticReporter.reportBinding(
+                        WARNING,
+                        contextBinding,
+                        "Please annotate context binding with any qualifier"
+                    )
+                }
+            }
     }
 }
