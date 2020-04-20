@@ -2,11 +2,6 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
-apply plugin: "scabbard.gradle"
-
-scabbard {
-    enabled true
-}
 
 android {
     compileSdkVersion 29
@@ -33,6 +28,12 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+    }
+}
+
+kapt {
+    arguments {
+        arg("trident.enabled", true)
     }
 }
 
