@@ -29,7 +29,7 @@ private fun Map<String, String>.booleanValue(key: String): Boolean {
 /**
  * Parses raw key value pair received from javac and maps it to typed data structure (`TridentOptions`)
  */
-fun parseOptions(options: Map<String, String>): TridentOptions {
-    val enabled = options.booleanValue(ENABLED.key)
+fun Map<String, String>.asTridentOptions(): TridentOptions {
+    val enabled = booleanValue(ENABLED.key)
     return TridentOptions(enabled)
 }

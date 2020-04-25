@@ -8,7 +8,7 @@ buildscript {
         }
     }
     dependencies {
-        classpath "com.android.tools.build:gradle:4.0.0-beta04"
+        classpath 'com.android.tools.build:gradle:4.0.0-beta05'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "gradle.plugin.dev.arunkumar:scabbard-gradle-plugin:0.2.0"
     }
@@ -25,6 +25,7 @@ apply plugin: "scabbard.gradle"
 
 scabbard {
     enabled true
+    outputFormat "svg"
 }
 
 

@@ -33,7 +33,7 @@ class TridentValidator : BindingGraphPlugin {
         bindingGraph: BindingGraph,
         diagnosticReporter: DiagnosticReporter
     ) {
-        val tridentModule = TridentModule(types, elements, parseOptions(options))
+        val tridentModule = TridentModule(types, elements, options.asTridentOptions())
         DaggerTridentComponent.factory()
             .create(tridentModule, bindingGraph, diagnosticReporter)
             .validator()

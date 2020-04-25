@@ -51,15 +51,15 @@ constructor(
 ) : Validation {
     override fun validate() {
         bindingGraph.bindings()
-            .firstOrNull { it.key().type().toString() == "android.content.Context" }
-            ?.let { contextBinding ->
-                if (!contextBinding.key().qualifier().isPresent) {
-                    diagnosticReporter.reportBinding(
-                        WARNING,
-                        contextBinding,
-                        "Please annotate context binding with any qualifier"
-                    )
-                }
+            .filter { binding ->
+                val key = binding.key()
+                key.type().toString() == "android.content.Context" && !key.qualifier().isPresent
+            }.forEach { contextBinding ->
+                diagnosticReporter.reportBinding(
+                    WARNING,
+                    contextBinding,
+                    "Please annotate context binding with any qualifier"
+                )
             }
     }
 }
