@@ -5,6 +5,7 @@ import android.os.Bundle
 import dagger.Provides
 import dagger.android.ContributesAndroidInjector
 import dagger.android.support.DaggerAppCompatActivity
+import dev.arunkumar.dagger.spi.validation.di.ActivityScope
 import javax.inject.Inject
 
 class MainActivity : DaggerAppCompatActivity() {
@@ -14,6 +15,9 @@ class MainActivity : DaggerAppCompatActivity() {
     @Inject
     @JvmField
     var count: Int = 0
+
+    @Inject
+    lateinit var presenter: Presenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,6 +32,7 @@ class MainActivity : DaggerAppCompatActivity() {
 
     @dagger.Module
     interface Builder {
+        @ActivityScope
         @ContributesAndroidInjector(modules = [Module::class])
         fun mainActivity(): MainActivity
     }
