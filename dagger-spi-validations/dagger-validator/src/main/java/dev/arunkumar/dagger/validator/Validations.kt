@@ -6,6 +6,7 @@ import dagger.model.BindingGraph
 import dagger.multibindings.ElementsIntoSet
 import dagger.spi.DiagnosticReporter
 import javax.inject.Inject
+import javax.tools.Diagnostic.Kind.ERROR
 import javax.tools.Diagnostic.Kind.WARNING
 
 /**
@@ -36,10 +37,12 @@ object ValidationModule {
     @JvmSuppressWildcards
     fun validations(
         androidContextValidation: AndroidContextValidation,
-        primitivesValidation: PrimitivesValidation
+        primitivesValidation: PrimitivesValidation,
+        globalCoroutineScopeValidation: GlobalCoroutineScopeValidation
     ): Set<Validation> = setOf(
         androidContextValidation,
-        primitivesValidation
+        primitivesValidation,
+        globalCoroutineScopeValidation
     )
 }
 
@@ -82,6 +85,37 @@ constructor(
                     WARNING,
                     binding,
                     "Primitives should be annotated with any qualifier"
+                )
+            }
+    }
+}
+
+class GlobalCoroutineScopeValidation
+@Inject
+constructor(
+    override val bindingGraph: BindingGraph,
+    override val diagnosticReporter: DiagnosticReporter
+) : Validation {
+    override fun validate() {
+        bindingGraph.bindings()
+            .filter { binding ->
+                val scope = binding.scope()
+                val isActivityScopedBinding = scope.isPresent && scope.get().scopeAnnotation()
+                    .annotationType.toString() == "dev.arunkumar.dagger.spi.validation.di.ActivityScope"
+                val hasGlobalCoroutineScope = bindingGraph
+                    .requestedBindings(binding)
+                    .any { binding ->
+                        val isCoroutineScope = binding.key().type().toString() == "kotlinx.coroutines.CoroutineScope"
+                        val fromAppComponent = binding
+                            .componentPath().toString() == "dev.arunkumar.dagger.spi.validation.di.AppComponent"
+                        isCoroutineScope && fromAppComponent
+                    }
+                isActivityScopedBinding && hasGlobalCoroutineScope
+            }.forEach { binding ->
+                diagnosticReporter.reportBinding(
+                    ERROR,
+                    binding,
+                    "Activity scoped bindings must not use global coroutine scope"
                 )
             }
     }

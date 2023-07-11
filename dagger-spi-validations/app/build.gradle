@@ -50,6 +50,8 @@ dependencies {
     implementation "com.google.dagger:dagger-android-support:2.26"
     kapt "com.google.dagger:dagger-android-processor:2.26"
 
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.0.0'
+
     kapt project(":dagger-validator")
 
     testImplementation 'junit:junit:4.12'
